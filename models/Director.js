@@ -8,7 +8,7 @@ const DirectorSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
 });
 
 module.exports = mongoose.model('director', DirectorSchema);
