@@ -193,7 +193,19 @@ router.put('/:director_id', (req, res, next) => {
   });
 });
 
+router.delete('/:director_id', (req, res, next) => {
+  //önceden findByIdAndRemove kullanılıyordu yeni sürümde ise findByIdAndDelete olarak kullanılıyor.
+  const promise = Director.findByIdAndDelete(req.params.director_id);
 
+  promise.then((director) => {
+    if (!director)
+      next({ message: 'The director was not found.', code: 74 });
+
+    res.json(director);
+  }).catch((err) => {
+    res.json(err);
+  });
+});
 
 
 module.exports = router;
